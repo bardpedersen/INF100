@@ -1,0 +1,25 @@
+function [x, y] = Rungekutta2(f,x0,y0,xn,n)
+% Input:
+% f - funksjon av (t,y) som er h�yresiden i difflikningen y' = f(t,y).
+% t0 -initialverdi og startpunkt for intervallet der vi skal estimere y-verdier. 
+% y0 - y-initialverdi.
+% tn - endepunktet for intervallet der vi skal estimere y-verdier. 
+% n - antall punkter vi vil estimere y(t) for i det aktuelle intervallet [t0 tn].
+% Output:
+% t - t-verdiene vi estimerer y(t) for.
+% y - de estimerte y(t)-verdiene
+dx = (xn-x0); % Steglengden i Eulers metode. 
+h = ((xn+1)-xn)
+x = (x0 : dx : xn)'; % Alle t-verdiene for estimering av y(t) 
+y = zeros(n+1,1); % S�ylevektor der estimerte y-verdier skal lagres.
+y(1) = y0; % Initialbetingelsen er at l�sningen g�r igjenom (t0,y0)
+
+% Eulers metode for estimering av y-verdiene:
+% --------------
+for k1 = 2:n+1
+    y(k1) =  f(x(k-1),y(k-1))*h; 
+end
+% --------------
+
+for k2 = 2:n+1
+    y(k2) = 
